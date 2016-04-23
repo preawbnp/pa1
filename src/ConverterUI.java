@@ -6,7 +6,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.*;
 
+/**
+ * 
+ * Make the program form JFrame for convert unit
+ * @author Budnampetch Onmee
+ *
+ */
 public class ConverterUI extends JFrame{
+	/**
+	 * Component of display window
+	 */
 	private JButton converterButton;
 	private Container container;
 	private Container containerA;
@@ -21,12 +30,20 @@ public class ConverterUI extends JFrame{
 	private JRadioButton leftButton;
 	private JRadioButton rightButton;
 
+	/**
+	 * Set title of display window and run order component in initComponents method.
+	 * @param uc converter the units of length from UnitConverter class.
+	 */
 	public ConverterUI (UnitConverter uc){
 		this.converter = uc;
 		this.setTitle("Distance Converter");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
+	
+	/**
+	 * Order component of display window
+	 */
 	private void initComponents(){
 		container = new Container();
 		containerA = new Container();
@@ -68,6 +85,10 @@ public class ConverterUI extends JFrame{
 		containerA.add(converterButton);
 
 		containerA.add(clearButton);
+		/**
+		 * Add actionListener is perform an action when user select it.
+		 * Set all JTextField to empty and can editable in JTextField.
+		 */
 		clearButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				textFieldLeft.setText("");			
@@ -80,6 +101,12 @@ public class ConverterUI extends JFrame{
 		String leftString = "Left -> Right";
 		leftButton = new JRadioButton(leftString);
 		leftButton.setActionCommand(leftString);
+		/**
+		 *  Add actionListener is perform an action when user select it,
+		 *  if user select this button user can edit textFieldLeft.
+		 *  But can not edit textFieldRight. 
+		 *  And user must select leftButton or rightButton in one time.
+		 */
 		leftButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.out.println("Left to Right");
@@ -93,6 +120,12 @@ public class ConverterUI extends JFrame{
 		String rightString = "Right -> Left";
 		rightButton = new JRadioButton(rightString);
 		rightButton.setActionCommand(rightString);
+		/**
+		 *  Add actionListener is perform an action when user select it,
+		 *  if user select this button user can edit textFieldRight.
+		 *  But can not edit textFieldLeft. 
+		 *  And user must select leftButton or rightButton in one time.
+		 */
 		rightButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.out.println("Right to Left");
@@ -105,6 +138,10 @@ public class ConverterUI extends JFrame{
 		containerB.add(leftButton);
 		containerB.add(rightButton);		
 
+		/**
+		 *  Add actionListener is perform an action when user select it.
+		 *  Display will show current value.
+		 */
 		converterButton.addActionListener(new ActionListener(){
 			String text = null;
 			public void actionPerformed(ActionEvent e){
