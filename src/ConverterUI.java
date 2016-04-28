@@ -153,8 +153,8 @@ public class ConverterUI extends JFrame{
 				try {
 					if (text.length() > 0) {
 						double value = Double.valueOf(text);
-						Length getComboBoxLeft = (Length) unitCombobox1.getSelectedItem();
-						Length getComboBoxRight = (Length) unitCombobox2.getSelectedItem();
+						Unit getComboBoxLeft = (Unit) unitCombobox1.getSelectedItem();
+						Unit getComboBoxRight = (Unit) unitCombobox2.getSelectedItem();
 						if(textFieldLeft.isEditable())
 							textFieldRight.setText(String.valueOf(String.format("%.4f",(converter.convert(value,getComboBoxLeft,getComboBoxRight)))));
 						else if(textFieldRight.isEditable())
@@ -174,8 +174,8 @@ public class ConverterUI extends JFrame{
 				try {
 					if (text.length() > 0) {
 						double value = Double.valueOf(text);
-						Length getComboBoxLeft = (Length) unitCombobox1.getSelectedItem();
-						Length getComboBoxRight = (Length) unitCombobox2.getSelectedItem();
+						Unit getComboBoxLeft = (Unit) unitCombobox1.getSelectedItem();
+						Unit getComboBoxRight = (Unit) unitCombobox2.getSelectedItem();
 						if (textFieldLeft.isEditable())
 							textFieldRight.setText(String.valueOf(String.format("%.4f", (converter.convert(value,getComboBoxLeft, getComboBoxRight)))));
 						else if (textFieldRight.isEditable())

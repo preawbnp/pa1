@@ -14,12 +14,12 @@ public enum Length implements Unit{
 	METER("Meter",1.0),
 	FOOT("Foot",0.3048),
 	CENTIMETER("Centimeter",0.01),
-	KILOMETER("kilometer",1000.0),
+	KILOMETER("Kilometer",1000.0),
 	MILE("Mile",1609.344),
 	WA("Wa",2.0),
 	INCH("Inch",0.0254),
 	YARD("Yard",Length.FOOT.getValue() * 3),
-	MICRON("MICRON", 1.0E-6);
+	MICRON("Micron", 1.0E-6);
 	
 	/**
 	 * @param name name of units.
