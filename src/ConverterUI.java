@@ -271,9 +271,4 @@ public class ConverterUI extends JFrame{
 		setVisible(true);
 		setSize(700,150);
 	}
-	public static void main(String [] arg){
-		UnitConverter uc = new UnitConverter();
-		ConverterUI display = new ConverterUI(uc);
-		display.run();
-	}
 }

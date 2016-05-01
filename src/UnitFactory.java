@@ -9,9 +9,14 @@ public class UnitFactory {
 	 * @param UnitType is Length, Area, Time, Weight
 	 * @param UnitFactory
 	 */
-	private UnitType[] type = new UnitType[4];
+	private UnitType[] type;
 	private static UnitFactory instance;
-	
+	/**
+	 *  Create component of UnitFactory.
+	 */
+	public UnitFactory(){
+		type = new UnitType[4];
+	}
 	/**
 	 * Managing all the kinds of units
 	 * @return kinds of units
@@ -36,7 +41,7 @@ public class UnitFactory {
 	 * @return unit in category of each unit
 	 */
 	public Unit[] getUnits(UnitType unitType) {
-		if (unitType.equals(UnitType.Length))
+		if (unitType.name().equals("Length"))
 			return Length.values();
 		else if(unitType.equals(UnitType.Weight))
 			return Weight.values();
