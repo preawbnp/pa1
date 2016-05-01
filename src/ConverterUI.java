@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -19,14 +20,14 @@ public class ConverterUI extends JFrame{
 	private JButton converterButton, clearButton;
 	private Container container, containerA, containerB;
 	private UnitConverter converter;
-	private JComboBox<Unit> unitCombobox1;
-	private JComboBox<Unit> unitCombobox2;
+	private JComboBox<Unit> unitCombobox1 = new JComboBox<Unit>();
+	private JComboBox<Unit> unitCombobox2 = new JComboBox<Unit>();
 	private JTextField textFieldLeft, textFieldRight;
 	private JLabel equals;
 	private JRadioButton leftButton, rightButton;
 	private JMenuBar menuBar;
 	private JMenu menu;
-	private JMenuItem menuItem;
+	private JMenuItem lengthItem, weightItem, areaItem, timeItem, exitItem;
 
 	/**
 	 * Set title of display window and run order component in initComponents method.
@@ -35,10 +36,12 @@ public class ConverterUI extends JFrame{
 	public ConverterUI (UnitConverter uc){
 		this.converter = uc;
 		this.setTitle("Unit Converter");
+		this.setSize(700, 150);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
-	}
 	
+	}
+
 	/**
 	 * Order component of display window
 	 */
@@ -50,13 +53,68 @@ public class ConverterUI extends JFrame{
 		this.add(containerA);
 		this.add(containerB);
 		container.setLayout(new GridLayout(3,1));
-		
+
 		menuBar = new JMenuBar();
 		menu = new JMenu("Unit Type");
 		menu.setMnemonic(KeyEvent.VK_F);
-	    menuBar.add(menu);
-	    container.add(menuBar);
-	    
+
+		lengthItem = new JMenuItem("Length");
+		lengthItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				unitCombobox1.removeAllItems();
+				unitCombobox2.removeAllItems();
+				changeUnitType(UnitType.Length);
+				setSize(700, 150);
+			}
+		});
+		weightItem = new JMenuItem("Weight");
+		weightItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				unitCombobox1.removeAllItems();
+				unitCombobox2.removeAllItems();
+				changeUnitType(UnitType.Weight);
+				setSize(700, 150);
+			}
+		});
+		areaItem = new JMenuItem("Area");
+		areaItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				unitCombobox1.removeAllItems();
+				unitCombobox2.removeAllItems();
+				changeUnitType(UnitType.Area);
+				setSize(700, 150);
+			}
+		});
+		timeItem = new JMenuItem("Time");
+		timeItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				unitCombobox1.removeAllItems();
+				unitCombobox2.removeAllItems();
+				changeUnitType(UnitType.Time);
+				setSize(700, 150);
+			}
+		});
+		exitItem = new JMenuItem("Exit");
+		exitItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		
+		menuBar.add(menu);
+		container.add(menuBar);
+
+		menu.add(lengthItem);
+		menu.add(weightItem);
+		menu.add(areaItem);
+		menu.add(timeItem);
+		menu.add(exitItem);
+
 		containerA.setLayout(new FlowLayout());
 		containerB.setLayout(new FlowLayout());
 		container.add(containerA);
@@ -65,20 +123,8 @@ public class ConverterUI extends JFrame{
 		converterButton = new JButton("Convert");		
 		textFieldLeft = new JTextField(7);
 
-		unitCombobox1 = new JComboBox<Unit>();
-		Unit[] lengths1 = converter.getUnits();
-		for (Unit u : lengths1)
-			unitCombobox1.addItem(u);
-		unitCombobox1 = new JComboBox<Unit>(lengths1);
-
 		equals = new JLabel("=");
 		textFieldRight = new JTextField(7);
-
-		unitCombobox2 = new JComboBox<Unit>();
-		Unit[] lengths2 = converter.getUnits();
-		for (Unit u : lengths2)
-			unitCombobox2.addItem(u);
-		unitCombobox2 = new JComboBox<Unit>(lengths2);
 
 		clearButton = new JButton("Clear");		
 
@@ -102,7 +148,7 @@ public class ConverterUI extends JFrame{
 				textFieldRight.setEditable(true);
 			}
 		});
-
+		
 		String leftString = "Left -> Right";
 		leftButton = new JRadioButton(leftString);
 		leftButton.setActionCommand(leftString);
@@ -150,6 +196,7 @@ public class ConverterUI extends JFrame{
 		converterButton.addActionListener(new ActionListener(){
 			String text = null;
 			public void actionPerformed(ActionEvent e){
+				
 				if (textFieldLeft.isEditable())
 					text = textFieldLeft.getText().trim();
 				else if (textFieldRight.isEditable())
@@ -157,6 +204,9 @@ public class ConverterUI extends JFrame{
 				System.out.println("ActionPerformed: input = " + text);
 				try {
 					if (text.length() > 0) {
+						textFieldRight.setForeground(Color.BLACK);
+						textFieldLeft.setForeground(Color.BLACK);
+						
 						double value = Double.valueOf(text);
 						Unit getComboBoxLeft = (Unit) unitCombobox1.getSelectedItem();
 						Unit getComboBoxRight = (Unit) unitCombobox2.getSelectedItem();
@@ -166,7 +216,10 @@ public class ConverterUI extends JFrame{
 							textFieldLeft.setText(String.valueOf(String.format("%.4f",(converter.convert(value, getComboBoxRight,getComboBoxLeft)))));
 					}
 				} catch (NumberFormatException exception){
-					System.out.println("Not a number! Please input number.");
+					if(textFieldLeft.isEditable())
+						textFieldLeft.setForeground(Color.RED);
+					else
+						textFieldRight.setForeground(Color.RED);
 				}
 			}
 
@@ -178,6 +231,9 @@ public class ConverterUI extends JFrame{
 				System.out.println("ActionPerformed: input = " + text);
 				try {
 					if (text.length() > 0) {
+						textFieldRight.setForeground(Color.BLACK);
+						textFieldLeft.setForeground(Color.BLACK);
+						
 						double value = Double.valueOf(text);
 						Unit getComboBoxLeft = (Unit) unitCombobox1.getSelectedItem();
 						Unit getComboBoxRight = (Unit) unitCombobox2.getSelectedItem();
@@ -187,7 +243,10 @@ public class ConverterUI extends JFrame{
 							textFieldLeft.setText(String.valueOf(String.format("%.4f", (converter.convert(value, getComboBoxRight, getComboBoxLeft)))));
 					}
 				} catch (NumberFormatException exception){
-					System.out.println("Not a number! Please input number.");
+					if(textFieldLeft.isEditable())
+						textFieldLeft.setForeground(Color.RED);
+					else
+						textFieldRight.setForeground(Color.RED);
 				}
 			}
 		});
@@ -195,8 +254,22 @@ public class ConverterUI extends JFrame{
 		getContentPane().add(container);
 		this.pack();
 	}
+	
+	/**
+	 * Change to other unit types
+	 * @param type of unit type
+	 */
+	public void changeUnitType(UnitType type) {
+		Unit[] length1 = converter.getUnits(type);
+			for (Unit u : length1)
+				unitCombobox1.addItem(u);
+		Unit[] length2 = converter.getUnits(type);
+			for (Unit u : length2)
+				unitCombobox2.addItem(u);
+	}
 	public void run(){
 		setVisible(true);
+		setSize(700,150);
 	}
 	public static void main(String [] arg){
 		UnitConverter uc = new UnitConverter();

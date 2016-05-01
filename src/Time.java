@@ -1,10 +1,10 @@
 /**
  * 
- * Specification common units of weight.
+ * Specification common units of time.
  * @author Budnampetch Onmee
  * 
  */
-public enum Weight implements Unit{
+public enum Time implements Unit{
 	
 	/**
 	 * 
@@ -12,13 +12,13 @@ public enum Weight implements Unit{
 	 * String is String name of unit,
 	 * value is convert to meter unit.
 	 */
-	KILOGRAM("Kilogram",1),
-	GRAM("Gram",0.001),
-	TAN("Tan",1000),
-	MILIGRAM("Miligram",0.000001), 
-	POND("Pond",0.45359237008928677),
-	ONZ("Onz",0.02834952313058039),
-	KARAT("Karat",0.0001999999999998672);
+	DAY("Day",1),
+	WEEK("Week",7.01923076923077),
+	MONTH("Month",30.416666666666664),
+	YEAR("Year",365), 
+	HOUR("Hour",0.041666666666666664),
+	MINUTE("Minute",0.0006944444444444444),
+	SECOND("Second",0.000011574074074074073);
 
 	/**
 	 * @param name name of units.
@@ -32,7 +32,7 @@ public enum Weight implements Unit{
 	 * @param name name of units.
 	 * @param value convert to regular unit.
 	 */
-	Weight(String name, double value){
+	Time(String name, double value){
 		this.name = name;
 		this.value = value;
 	}

@@ -1,10 +1,10 @@
 /**
  * 
- * Specification common units of weight.
+ * Specification common units of area.
  * @author Budnampetch Onmee
  * 
  */
-public enum Weight implements Unit{
+public enum Area implements Unit{
 	
 	/**
 	 * 
@@ -12,13 +12,13 @@ public enum Weight implements Unit{
 	 * String is String name of unit,
 	 * value is convert to meter unit.
 	 */
-	KILOGRAM("Kilogram",1),
-	GRAM("Gram",0.001),
-	TAN("Tan",1000),
-	MILIGRAM("Miligram",0.000001), 
-	POND("Pond",0.45359237008928677),
-	ONZ("Onz",0.02834952313058039),
-	KARAT("Karat",0.0001999999999998672);
+	SQUAREKILOMETER("Sq.Kilometer",1),
+	SQUAREMETER("Sq.Meter",Math.pow(10,6)),
+	SQUARECENTIMETER("Sq.Centimeter", Math.pow(10,10)),
+	SQUAREMILE("Sq.Mile",0.386102158539359), 
+	SQUAREFOOT("Sq.Foot",10763910.416623611),
+	RAI("Rai",625),
+	ACRES("Acres",247.105381467165);
 
 	/**
 	 * @param name name of units.
@@ -32,7 +32,7 @@ public enum Weight implements Unit{
 	 * @param name name of units.
 	 * @param value convert to regular unit.
 	 */
-	Weight(String name, double value){
+	Area(String name, double value){
 		this.name = name;
 		this.value = value;
 	}
