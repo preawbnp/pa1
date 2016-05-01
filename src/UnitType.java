@@ -1,5 +1,7 @@
 
 public enum UnitType {
 	Length,
-	Weight
+	Weight,
+	Area,
+	Volume
 }

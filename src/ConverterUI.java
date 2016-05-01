@@ -16,19 +16,17 @@ public class ConverterUI extends JFrame{
 	/**
 	 * Component of display window
 	 */
-	private JButton converterButton;
-	private Container container;
-	private Container containerA;
-	private Container containerB;
+	private JButton converterButton, clearButton;
+	private Container container, containerA, containerB;
 	private UnitConverter converter;
 	private JComboBox<Unit> unitCombobox1;
 	private JComboBox<Unit> unitCombobox2;
-	private JTextField textFieldLeft;
-	private JTextField textFieldRight;
+	private JTextField textFieldLeft, textFieldRight;
 	private JLabel equals;
-	private JButton clearButton;	
-	private JRadioButton leftButton;
-	private JRadioButton rightButton;
+	private JRadioButton leftButton, rightButton;
+	private JMenuBar menuBar;
+	private JMenu menu;
+	private JMenuItem menuItem;
 
 	/**
 	 * Set title of display window and run order component in initComponents method.
@@ -36,7 +34,7 @@ public class ConverterUI extends JFrame{
 	 */
 	public ConverterUI (UnitConverter uc){
 		this.converter = uc;
-		this.setTitle("Distance Converter");
+		this.setTitle("Unit Converter");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
@@ -51,7 +49,14 @@ public class ConverterUI extends JFrame{
 		this.add(container);
 		this.add(containerA);
 		this.add(containerB);
-		container.setLayout(new GridLayout(2,1));
+		container.setLayout(new GridLayout(3,1));
+		
+		menuBar = new JMenuBar();
+		menu = new JMenu("Unit Type");
+		menu.setMnemonic(KeyEvent.VK_F);
+	    menuBar.add(menu);
+	    container.add(menuBar);
+	    
 		containerA.setLayout(new FlowLayout());
 		containerB.setLayout(new FlowLayout());
 		container.add(containerA);
@@ -186,7 +191,7 @@ public class ConverterUI extends JFrame{
 				}
 			}
 		});
-
+		
 		getContentPane().add(container);
 		this.pack();
 	}
